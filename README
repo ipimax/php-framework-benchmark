@@ -42,11 +42,15 @@ How to run this benchmark
         http://slim.pfb.example.com/?debug=1
         http://colaphp.pfb.example.com/?debug=1
         http://fuelphp.pfb.example.com/?debug=1
+	http://ruxon.pfb.example.com/?debug=1
 
     Run the benchmark scripts
         php bench.php -c 100 -n 5000 (clients:100, numbers:5000)   
        
         About 1~3 hours later, all of the test data be saved in the ./result-*
+
+@2014-07-23
+ruxon framework 8.0
 
 @2012-05-18
 -----------------------------------------------
