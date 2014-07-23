@@ -1,0 +1,18 @@
+{
+    "Name": "Шаблон по умолчанию",
+    "Version": "8.0",
+
+    "Client": {
+        "Packages": [
+            "Jquery",
+            "JqueryUI",
+            "TimePicker"
+        ],
+
+        "ScriptFiles": [
+            "~/js/main.js"
+        ],
+
+        "CssFiles": []
+    }
+}

@@ -1,0 +1,79 @@
+[
+    {
+        "name": "ruxon/framework",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/ruxon/framework.git",
+            "reference": "21b489cf6137ff2d4c2cb9840f8c0a245b75c0d4"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/ruxon/framework/zipball/21b489cf6137ff2d4c2cb9840f8c0a245b75c0d4",
+            "reference": "21b489cf6137ff2d4c2cb9840f8c0a245b75c0d4",
+            "shasum": ""
+        },
+        "require": {
+            "ext-mbstring": "*",
+            "php": ">=5.4.0"
+        },
+        "time": "2014-07-15 06:40:27",
+        "type": "ruxon-library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "ruxon\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "description": "Ruxon PHP Framework",
+        "homepage": "http://ruxon-framework.ru/",
+        "keywords": [
+            "framework",
+            "ruxon"
+        ]
+    },
+    {
+        "name": "ruxon/module-ruxon",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/ruxon/module-ruxon.git",
+            "reference": "52b211e3dd640c6ffcd28edf6ce684c159cd36f4"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/ruxon/module-ruxon/zipball/52b211e3dd640c6ffcd28edf6ce684c159cd36f4",
+            "reference": "52b211e3dd640c6ffcd28edf6ce684c159cd36f4",
+            "shasum": ""
+        },
+        "require": {
+            "ext-mbstring": "*",
+            "php": ">=5.4.0"
+        },
+        "time": "2014-07-14 10:37:18",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "ruxon\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "description": "Ruxon Framework module Ruxon",
+        "homepage": "http://ruxon-framework.ru/",
+        "keywords": [
+            "framework",
+            "module",
+            "ruxon"
+        ]
+    }
+]

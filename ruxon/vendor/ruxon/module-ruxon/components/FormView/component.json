@@ -1,0 +1,36 @@
+{
+    "Name": "Форма",
+    "Version": "8.0",
+
+    "Params": {
+        "Template": {
+            "Type": "String",
+            "Default": "Index"
+        },
+
+        "Title": {
+            "Type": "String"
+        },
+
+        "Fields": {
+            "Type": "Array"
+        },
+
+        "Buttons": {
+            "Type": "Array"
+        },
+
+        "Errors": {
+            "Type": "Array"
+        },
+
+        "Data": {
+            "Type": "Object"
+        },
+
+        "BackLink": {
+            "Type": "String"
+        }
+
+    }
+}

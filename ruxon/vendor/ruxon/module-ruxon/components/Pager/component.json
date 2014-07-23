@@ -1,0 +1,25 @@
+{
+    "Name": "Компонент постраничной навигации",
+    "Version": "8.0",
+
+    "Params": {
+        "Template": {
+            "Type": "String",
+            "Default": "Index"
+        },
+        
+        "Title": {
+            "Type": "String",
+            "Default": "Страницы"
+        },
+        
+        "Pages"  : {
+            "Type": "Array"
+        },
+        
+        "AnotherParams"  : {
+            "Type": "Array",
+            "Default": []
+        }
+    }
+}

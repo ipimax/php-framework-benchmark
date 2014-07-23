@@ -1,0 +1,20 @@
+{
+	"name": "ruxon/module-ruxon",
+	"description": "Ruxon Framework module Ruxon",
+	"keywords": ["ruxon", "framework", "module"],
+	"homepage": "http://ruxon-framework.ru/",
+	"type": "library",
+	"license": "MIT",
+	"support": {
+		"issues": "https://github.com/ruxon/module-ruxon/issues?state=open",
+		"forum": "http://ruxon-framework.ru/forum/",
+		"source": "https://github.com/ruxon/module-ruxon"
+	},
+	"require": {
+		"php": ">=5.4.0",
+		"ext-mbstring": "*"
+	},
+	"autoload": {
+		"psr-4": { "ruxon\\": "" }
+	}
+}

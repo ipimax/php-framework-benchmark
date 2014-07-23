@@ -1,0 +1,7 @@
+{
+    "Authorize": "Авторизация",
+    "Enter your login and password": "Введите свой логин и пароль",
+    "Enter": "Авторизоваться",
+    "demo/demo - member, admin/admin - administrator": "demo/demo - пользователь, admin/admin - администратор",
+    "Wrong login or password": "Пользователь с такой комбинацией логина и пароля не найден."
+}

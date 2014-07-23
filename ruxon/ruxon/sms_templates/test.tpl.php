@@ -1,0 +1,1 @@
+Шаблон смс сообщения <?php echo $this->getParam()?>

@@ -34,6 +34,7 @@ $al = array(
     'micromvc4' => 'MicroMVC 4.0.0',
     'phalcon' => 'Phalcon 0.4.4',
     'yaf' => 'Yaf 2.1.18',
+    'ruxon' => 'Ruxon Framework 8.0',
     //'proem' => 'Proem 0.5.1',
 );
 $a = array_keys($al);

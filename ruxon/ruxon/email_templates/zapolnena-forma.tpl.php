@@ -1,0 +1,1 @@
+Вам пришла форма:<div><?php echo $this->getData()?></div>

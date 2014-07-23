@@ -1,0 +1,100 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "hash": "bff7a2e5246c76aab4255764b8b34e6b",
+    "packages": [
+        {
+            "name": "ruxon/framework",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ruxon/framework.git",
+                "reference": "21b489cf6137ff2d4c2cb9840f8c0a245b75c0d4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ruxon/framework/zipball/21b489cf6137ff2d4c2cb9840f8c0a245b75c0d4",
+                "reference": "21b489cf6137ff2d4c2cb9840f8c0a245b75c0d4",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "php": ">=5.4.0"
+            },
+            "type": "ruxon-library",
+            "autoload": {
+                "psr-4": {
+                    "ruxon\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Ruxon PHP Framework",
+            "homepage": "http://ruxon-framework.ru/",
+            "keywords": [
+                "framework",
+                "ruxon"
+            ],
+            "time": "2014-07-15 06:40:27"
+        },
+        {
+            "name": "ruxon/module-ruxon",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ruxon/module-ruxon.git",
+                "reference": "52b211e3dd640c6ffcd28edf6ce684c159cd36f4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ruxon/module-ruxon/zipball/52b211e3dd640c6ffcd28edf6ce684c159cd36f4",
+                "reference": "52b211e3dd640c6ffcd28edf6ce684c159cd36f4",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "ruxon\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Ruxon Framework module Ruxon",
+            "homepage": "http://ruxon-framework.ru/",
+            "keywords": [
+                "framework",
+                "module",
+                "ruxon"
+            ],
+            "time": "2014-07-14 10:37:18"
+        }
+    ],
+    "packages-dev": [
+
+    ],
+    "aliases": [
+
+    ],
+    "minimum-stability": "dev",
+    "stability-flags": [
+
+    ],
+    "platform": {
+        "php": ">=5.4.0",
+        "ext-mbstring": "*"
+    },
+    "platform-dev": [
+
+    ]
+}

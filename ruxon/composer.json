@@ -1,0 +1,27 @@
+{
+    "name": "ruxon/app",
+    "description": "Ruxon App Template",
+    "keywords": ["ruxon", "template", "app"],
+    "homepage": "http://ruxon-framework.ru/",
+    "type": "project",
+    "license": "MIT",
+    "support": {
+        "issues": "https://github.com/ruxon/app/issues?state=open",
+        "forum": "http://ruxon-framework.ru/forum/",
+        "source": "https://github.com/ruxon/app"
+    },
+    "require": {
+        "php": ">=5.4.0",
+        "ext-mbstring": "*",
+        "ruxon/framework": "*",
+        "ruxon/module-ruxon": "*"
+    },
+
+    "autoload": {
+        "psr-4": { "ruxon\\": "" },
+        "classmap": [
+            "vendor/ruxon/framework/src"
+        ]
+    },
+    "minimum-stability": "dev"
+}
