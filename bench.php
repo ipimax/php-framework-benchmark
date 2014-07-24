@@ -19,23 +19,15 @@ $gn = isset($opt['n']) ? $opt['n'] : 30000;
 $gt = isset($opt['t']) ? $opt['t'] : 10;
 
 $al = array(
-    'symfony2' => 'Symfony 2.0.16',
-    'zf' => 'Zend Framework 1.11.13',
-    'zf2' => 'Zend Framework 2.0.0-rc4',
-    'cakephp' => 'CakePHP 2.0.4',
-    'fuelphp' => 'FuelPHP 1.1',
-    'kohana' => 'Kohana 3.2.0',
-    'ci' => 'CodeIgniter 2.1.0',
-    'yii' => 'Yii Framework 1.1.8',
-    'slim' => 'Slim 1.5',
-    'laravel' => 'Laravel 2.0.2',
-    'doophp' => 'DooPHP 1.4.1',
-    'colaphp' => 'ColaPHP 1.2-ga',
-    'micromvc4' => 'MicroMVC 4.0.0',
-    'phalcon' => 'Phalcon 0.4.4',
-    'yaf' => 'Yaf 2.1.18',
-    'ruxon' => 'Ruxon Framework 8.0',
-    //'proem' => 'Proem 0.5.1',
+    'symfony2' => 'Symfony 2.5.2',
+    'zf' => 'Zend Framework 1.12.7',
+    'zf2' => 'Zend Framework 2.3.1',
+    'cakephp' => 'CakePHP 2.5.3',
+    'kohana' => 'Kohana 3.3.2',
+    'ci' => 'CodeIgniter 2.2.0',
+    'yii' => 'Yii Framework 1.1.15',
+    'laravel' => 'Laravel 4.2',
+    'ruxon' => 'Ruxon Framework 8.0'
 );
 $a = array_keys($al);
 

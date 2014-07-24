@@ -3,7 +3,7 @@
  * Zend Framework (http://framework.zend.com/)
  *
  * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2013 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
@@ -22,8 +22,12 @@ class Bcrypt implements PasswordInterface
 
     /**
      * @var string
+     *
+     * Changed from 14 to 10 to prevent possibile DOS attacks
+     * due to the high computational time
+     * @see http://timoh6.github.io/2013/11/26/Aggressive-password-stretching.html
      */
-    protected $cost = '14';
+    protected $cost = '10';
 
     /**
      * @var string
@@ -83,36 +87,41 @@ class Bcrypt implements PasswordInterface
          * Check for security flaw in the bcrypt implementation used by crypt()
          * @see http://php.net/security/crypt_blowfish.php
          */
-        if ((version_compare(PHP_VERSION, '5.3.7') >= 0) && !$this->backwardCompatibility) {
+        if ((PHP_VERSION_ID >= 50307) && !$this->backwardCompatibility) {
             $prefix = '$2y$';
         } else {
             $prefix = '$2a$';
             // check if the password contains 8-bit character
             if (preg_match('/[\x80-\xFF]/', $password)) {
                 throw new Exception\RuntimeException(
-                    'The bcrypt implementation used by PHP can contains a security flaw ' .
+                    'The bcrypt implementation used by PHP can contain a security flaw ' .
                     'using password with 8-bit character. ' .
                     'We suggest to upgrade to PHP 5.3.7+ or use passwords with only 7-bit characters'
                 );
             }
         }
         $hash = crypt($password, $prefix . $this->cost . '$' . $salt64);
-        if (strlen($hash) <= 13) {
+        if (strlen($hash) < 13) {
             throw new Exception\RuntimeException('Error during the bcrypt generation');
         }
         return $hash;
     }
 
     /**
-     * Verify if a password is correct against an hash value
+     * Verify if a password is correct against a hash value
      *
      * @param  string $password
      * @param  string $hash
+     * @throws Exception\RuntimeException when the hash is unable to be processed
      * @return bool
      */
     public function verify($password, $hash)
     {
-        return ($hash === crypt($password, $hash));
+        $result = crypt($password, $hash);
+        if ($result === $hash) {
+            return true;
+        }
+        return false;
     }
 
     /**

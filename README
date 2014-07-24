@@ -34,14 +34,10 @@ How to run this benchmark
         http://zf2.pfb.example.com/?debug=1
         http://ci.pfb.example.com/?debug=1
         http://yii.pfb.example.com/?debug=1
-        http://micromvc4.pfb.example.com/?debug=1
+	http://yii2.pfb.example.com/?debug=1
         http://cakephp.pfb.example.com/?debug=1
         http://symfony2.pfb.example.com/?debug=1
-        http://yaf.pfb.example.com/?debug=1
         http://laravel.pfb.example.com/?debug=1
-        http://slim.pfb.example.com/?debug=1
-        http://colaphp.pfb.example.com/?debug=1
-        http://fuelphp.pfb.example.com/?debug=1
 	http://ruxon.pfb.example.com/?debug=1
 
     Run the benchmark scripts

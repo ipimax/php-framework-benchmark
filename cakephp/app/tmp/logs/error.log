@@ -1,1 +1,10 @@
-
+2014-07-24 07:39:56 Error: Fatal Error (1): Call to undefined function xhprof_disable() in [D:\Sites\php-framework-benchmark\php-framework-benchmark\cakephp\app\webroot\index.php, line 120]
+2014-07-24 07:39:56 Error: [FatalErrorException] Call to undefined function xhprof_disable()
+Request URL: /
+Stack Trace:
+#0 D:\Sites\php-framework-benchmark\php-framework-benchmark\cakephp\lib\Cake\Error\ErrorHandler.php(203): ErrorHandler::handleFatalError(1, 'Call to undefin...', 'D:\Sites\php-fr...', 120)
+#1 [internal function]: ErrorHandler::handleError(1, 'Call to undefin...', 'D:\Sites\php-fr...', 120, Array)
+#2 D:\Sites\php-framework-benchmark\php-framework-benchmark\cakephp\lib\Cake\Core\App.php(931): call_user_func('ErrorHandler::h...', 1, 'Call to undefin...', 'D:\Sites\php-fr...', 120, Array)
+#3 D:\Sites\php-framework-benchmark\php-framework-benchmark\cakephp\lib\Cake\Core\App.php(904): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}

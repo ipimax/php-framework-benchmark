@@ -15,25 +15,25 @@ return array(
                 'class' => 'Response'
             ),
             
-            'client' => array(
+            /*'client' => array(
                 'class' => 'Client'
-            ),
+            ),*/
             
-            'assetManager' => array(
+            /*'assetManager' => array(
                 'class' => 'AssetManager',
                 'fastCheck' => true
-            ),
+            ),*/
             
             'session' => array(
                 'class' => 'SessionFileDriver'
             ),
 
-            'image' => array(
+            /*'image' => array(
                 'class' => 'ImageToolkit',
                 'driver' => 'GD'
-            ),
+            ),*/
             
-            'auth' => array(
+            /*'auth' => array(
                 'class' => 'AuthFile',
                 'users' => array(
                     array('login' => 'demo', 'password' => 'demo'),
@@ -41,17 +41,17 @@ return array(
                 ),
 
                 'loginUrl' => '/app/user/login'
-            ),
+            ),*/
             
-            'mail' => array(
+            /*'mail' => array(
                 'class' => 'Mail'
-            ),
+            ),*/
 
-            'emailEvent' => array(
+            /*'emailEvent' => array(
                 'class' => 'EmailEvent',
                 'fromName' => 'Ruxon Blog App',
                 'fromEmail' => 'no@ruxon-framework.ru'
-            ),
+            ),*/
 
             /*'smsEvent' => array(
                 'class' => 'SmsEvent',
@@ -62,7 +62,7 @@ return array(
                 )
             ),*/
 
-            'fileStorage'=>array(
+            /*'fileStorage'=>array(
                 'class'=>'StorageFileSystem',
                 'buckets' => array(
 
@@ -76,24 +76,24 @@ return array(
                         'baseUrl'=>'~/uploads/files',
                     )
                 )
-            ),
+            ),*/
 
             'urlManager' => array(
                 'class' => 'UrlManagerToolkit',
-                'urlFormat'=>'path',
+                'urlFormat'=>'get',
             ),
 
-            'i18n' => [
+            /*'i18n' => [
                 'class' => 'I18n',
                 'translations' => [
                     '*' => [
                         'class' => '\\PhpMessageSource'
                     ]
                 ]
-            ]
+            ]*/
         ),
         
-        'Cache'
+        //'Cache'
     ),
 
     // Init Events

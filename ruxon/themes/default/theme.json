@@ -4,9 +4,9 @@
 
     "Client": {
         "Packages": [
-            "Jquery",
-            "JqueryUI",
-            "TimePicker"
+            //"Jquery",
+            //"JqueryUI",
+            //"TimePicker"
         ],
 
         "ScriptFiles": [

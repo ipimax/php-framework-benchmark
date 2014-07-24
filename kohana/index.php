@@ -1,5 +1,6 @@
 <?php
-if (isset($_GET['debug'])) {
+	
+	if (isset($_GET['debug'])) {
     xhprof_enable(XHPROF_FLAGS_CPU + XHPROF_FLAGS_MEMORY);
     // System Start Time
     define('START_TIME', microtime(true));
@@ -7,19 +8,18 @@ if (isset($_GET['debug'])) {
     define('START_MEMORY_USAGE', memory_get_usage());
 }
 
-
 /**
  * The directory in which your application specific resources are located.
  * The application directory must contain the bootstrap.php file.
  *
- * @see  http://kohanaframework.org/guide/about.install#application
+ * @link http://kohanaframework.org/guide/about.install#application
  */
 $application = 'application';
 
 /**
  * The directory in which your modules are located.
  *
- * @see  http://kohanaframework.org/guide/about.install#modules
+ * @link http://kohanaframework.org/guide/about.install#modules
  */
 $modules = 'modules';
 
@@ -27,7 +27,7 @@ $modules = 'modules';
  * The directory in which the Kohana resources are located. The system
  * directory must contain the classes/kohana.php file.
  *
- * @see  http://kohanaframework.org/guide/about.install#system
+ * @link http://kohanaframework.org/guide/about.install#system
  */
 $system = 'system';
 
@@ -35,13 +35,13 @@ $system = 'system';
  * The default extension of resource files. If you change this, all resources
  * must be renamed to use the new extension.
  *
- * @see  http://kohanaframework.org/guide/about.install#ext
+ * @link http://kohanaframework.org/guide/about.install#ext
  */
 define('EXT', '.php');
 
 /**
  * Set the PHP error reporting level. If you set this in php.ini, you remove this.
- * @see  http://php.net/error_reporting
+ * @link http://www.php.net/manual/errorfunc.configuration#ini.error-reporting
  *
  * When developing your application, it is highly recommended to enable notices
  * and strict warnings. Enable them by using: E_ALL | E_STRICT
@@ -58,7 +58,7 @@ error_reporting(E_ALL | E_STRICT);
  * End of standard configuration! Changing any of the code below should only be
  * attempted by those with a working knowledge of Kohana internals.
  *
- * @see  http://kohanaframework.org/guide/using.configuration
+ * @link http://kohanaframework.org/guide/using.configuration
  */
 
 // Set the full path to the docroot
@@ -84,11 +84,11 @@ define('SYSPATH', realpath($system).DIRECTORY_SEPARATOR);
 // Clean up the configuration vars
 unset($application, $modules, $system);
 
-//if (file_exists('install'.EXT))
-//{
+if (file_exists('install'.EXT))
+{
 	// Load the installation check
-	//return include 'install'.EXT;
-//}
+	return include 'install'.EXT;
+}
 
 /**
  * Define the start time of the application, used for profiling.
@@ -109,37 +109,48 @@ if ( ! defined('KOHANA_START_MEMORY'))
 // Bootstrap the application
 require APPPATH.'bootstrap'.EXT;
 
-/**
- * Execute the main request. A source of the URI can be passed, eg: $_SERVER['PATH_INFO'].
- * If no source is specified, the URI will be automatically detected.
- */
-echo Request::factory()
-	->execute()
-	->send_headers()
-	->body();
-	
+if (PHP_SAPI == 'cli') // Try and load minion
+{
+	class_exists('Minion_Task') OR die('Please enable the Minion module for CLI support.');
+	set_exception_handler(array('Minion_Exception', 'handler'));
 
-$xhprof_data = xhprof_disable();
-
-if (!isset($_GET['debug'])) {
-    die();
+	Minion_Task::factory(Minion_CLI::options())->execute();
+}
+else
+{
+	/**
+	 * Execute the main request. A source of the URI can be passed, eg: $_SERVER['PATH_INFO'].
+	 * If no source is specified, the URI will be automatically detected.
+	 */
+	echo Request::factory(TRUE, array(), FALSE)
+		->execute()
+		->send_headers(TRUE)
+		->body();
 }
 
-echo "Page rendered in <b>"
-    . round((microtime(true) - START_TIME), 5) * 1000 ." ms</b>, taking <b>"
-    . round((memory_get_usage() - START_MEMORY_USAGE) / 1024, 2) ." KB</b>";
-$f = get_included_files();
-echo ", include files: ".count($f);
 
-$XHPROF_ROOT = realpath(dirname(__FILE__) .'/..');
-include_once $XHPROF_ROOT . "/xhprof/xhprof_lib/utils/xhprof_lib.php";
-include_once $XHPROF_ROOT . "/xhprof/xhprof_lib/utils/xhprof_runs.php";
 
-// save raw data for this profiler run using default
-// implementation of iXHProfRuns.
-$xhprof_runs = new XHProfRuns_Default();
+if (isset($_GET['debug'])) {
 
-// save the run under a namespace "xhprof_foo"
-$run_id = $xhprof_runs->save_run($xhprof_data, "xhprof_foo");
+	$xhprof_data = xhprof_disable();
 
-echo ", xhprof <a href=\"http://xhprof.pfb.example.com/xhprof_html/index.php?run=$run_id&source=xhprof_foo\">url</a>";
+	echo "Page rendered in <b>"
+	    . round((microtime(true) - START_TIME), 5) * 1000 ." ms</b>, taking <b>"
+	    . round((memory_get_usage() - START_MEMORY_USAGE) / 1024, 2) ." KB</b>";
+	$f = get_included_files();
+	echo ", include files: ".count($f);
+
+	$XHPROF_ROOT = realpath(dirname(__FILE__) .'/..');
+	include_once $XHPROF_ROOT . "/xhprof/xhprof_lib/utils/xhprof_lib.php";
+	include_once $XHPROF_ROOT . "/xhprof/xhprof_lib/utils/xhprof_runs.php";
+
+	// save raw data for this profiler run using default
+	// implementation of iXHProfRuns.
+	$xhprof_runs = new XHProfRuns_Default();
+
+	// save the run under a namespace "xhprof_foo"
+	$run_id = $xhprof_runs->save_run($xhprof_data, "xhprof_foo");
+
+	echo ", xhprof <a href=\"http://xhprof.pfb.example.com/xhprof_html/index.php?run=$run_id&source=xhprof_foo\">url</a>";
+	
+}	

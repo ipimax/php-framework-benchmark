@@ -3,7 +3,7 @@
  * Zend Framework (http://framework.zend.com/)
  *
  * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2013 Zend Technologies USA Inc. (http://www.zend.com)
+ * @copyright Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
@@ -14,6 +14,7 @@ use Zend\Http\Request as HttpRequest;
 use Zend\Stdlib\Parameters;
 use Zend\Stdlib\ParametersInterface;
 use Zend\Uri\Http as HttpUri;
+use Zend\Validator\Hostname as HostnameValidator;
 
 /**
  * HTTP Request for current PHP environment
@@ -250,14 +251,43 @@ class Request extends HttpRequest
         $uri = new HttpUri();
 
         // URI scheme
-        $scheme = (!empty($this->serverParams['HTTPS'])
-                   && $this->serverParams['HTTPS'] !== 'off') ? 'https' : 'http';
+        if ((!empty($this->serverParams['HTTPS']) && $this->serverParams['HTTPS'] !== 'off')
+            || (!empty($this->serverParams['HTTP_X_FORWARDED_PROTO']) && $this->serverParams['HTTP_X_FORWARDED_PROTO'] == 'https')
+        ) {
+            $scheme = 'https';
+        } else {
+            $scheme = 'http';
+        }
         $uri->setScheme($scheme);
 
         // URI host & port
         $host = null;
         $port = null;
-        if (isset($this->serverParams['SERVER_NAME'])) {
+
+        // Set the host
+        if ($this->getHeaders()->get('host')) {
+            $host = $this->getHeaders()->get('host')->getFieldValue();
+
+            // works for regname, IPv4 & IPv6
+            if (preg_match('|\:(\d+)$|', $host, $matches)) {
+                $host = substr($host, 0, -1 * (strlen($matches[1]) + 1));
+                $port = (int) $matches[1];
+            }
+
+            // set up a validator that check if the hostname is legal (not spoofed)
+            $hostnameValidator = new HostnameValidator(array(
+                'allow'       => HostnameValidator::ALLOW_ALL,
+                'useIdnCheck' => false,
+                'useTldCheck' => false,
+            ));
+            // If invalid. Reset the host & port
+            if (!$hostnameValidator->isValid($host)) {
+                $host = null;
+                $port = null;
+            }
+        }
+
+        if (!$host && isset($this->serverParams['SERVER_NAME'])) {
             $host = $this->serverParams['SERVER_NAME'];
             if (isset($this->serverParams['SERVER_PORT'])) {
                 $port = (int) $this->serverParams['SERVER_PORT'];
@@ -271,13 +301,6 @@ class Request extends HttpRequest
                     // Unset the port so the default port can be used
                     $port = null;
                 }
-            }
-        } elseif ($this->getHeaders()->get('host')) {
-            $host = $this->getHeaders()->get('host')->getFieldValue();
-            // works for regname, IPv4 & IPv6
-            if (preg_match('|\:(\d+)$|', $host, $matches)) {
-                $host = substr($host, 0, -1 * (strlen($matches[1]) + 1));
-                $port = (int) $matches[1];
             }
         }
         $uri->setHost($host);
@@ -464,7 +487,6 @@ class Request extends HttpRequest
      */
     protected function detectBaseUrl()
     {
-        $baseUrl        = '';
         $filename       = $this->getServer()->get('SCRIPT_FILENAME', '');
         $scriptName     = $this->getServer()->get('SCRIPT_NAME');
         $phpSelf        = $this->getServer()->get('PHP_SELF');
